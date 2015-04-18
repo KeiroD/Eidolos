@@ -3,27 +3,44 @@
 # Twitter.com/EidolonHost
 # EidolonHost is at https://eidolonhost.com
 
+# Pretty Colors
+OK='\e[1;32m'
+OK2='\e[1;36m'
+OK3='\e[1;33m'
+WARNING='\e[1;31m'
+FAIL='\e[2;30m'
+ENDC='\033[0m'
+
+# Am I root?
+if [ "x$(id -u)" != 'x0' ]; then
+    echo -e "$WARNING Error: this script can only be executed by root $ENDC"
+    exit 1
+fi
+
+# Sets up showMenu.
+
 showMenu () {
 clear
 echo "";
 echo "[+]-----------------------------------------------------------------------------[+]"
-echo -e "\e[0;36m  _|_|_| _|_|_|_| _|_|_|     _|_|  _|       _|_|  _|_|_|       \e[0m";
-echo -e "\e[0;36m  _|        _|    _|   _|  _|   _| _|     _|   _| _|           \e[0m";
-echo -e "\e[0;36m  _|_|_|    _|    _|    _| _|   _| _|     _|   _| _|_|_|       \e[0m";
-echo -e "\e[0;36m  _|        _|    _|   _|  _|   _| _|     _|   _|      _|      \e[0m";
-echo -e "\e[0;36m  _|_|_| _|_|_|_| _|_|_|    _|_|   _|_|_|  _|_|   _|_|_|       \e[0m";
-echo -e "\e[0;36m                                                                   \e[0m";
+echo -e "$OK  _|_|_| _|_|_|_| _|_|_|     _|_|  _|       _|_|  _|_|_|       $ENDC ";
+echo -e "$OK  _|        _|    _|   _|  _|   _| _|     _|   _| _|           $ENDC ";
+echo -e "$OK  _|_|_|    _|    _|    _| _|   _| _|     _|   _| _|_|_|       $ENDC ";
+echo -e "$OK  _|        _|    _|   _|  _|   _| _|     _|   _|      _|      $ENDC ";
+echo -e "$OK  _|_|_| _|_|_|_| _|_|_|    _|_|   _|_|_|  _|_|   _|_|_|       $ENDC ";
+echo -e "$OK                                                               $ENDC ";
 echo "[+]-----------------------------------------------------------------------------[+]"
 echo " ";
-echo " Welcome to EidolosScript";
-echo " build 0.1 on March 28th 2015";
+echo " Welcome to EidolosScript Addons";
+echo " build 0.2 on April 17th 2015";
 echo " eidolonhost.com - systems@eidolonhost.com";
+echo -e "$WARNING GNU General Public License -- GPL v2 1991 — See included LICENSE. $ENDC"
 echo " `date`";
-echo " ";
-echo -e "\e[1;37m Plugins - Addons and Secure:\e[0m";
+echo -e "$OK2 Don't forget, you're on $(arch) $ENDC";
+echo -e "$OK3 Plugins - Addons and Secure: $ENDC ";
 echo " csf ------------ Install CSF Firewall for cPanel."
 echo " htopsetup ----------- Install htop Process Viewer."
-echo " logview ------------- Install logview plugin." 
+echo " logview ------------- Install logview plugin."
 echo " chkrootkit ---------- Install CHKRootKit."
 echo " maldetect ----------- Install Linux Malware Detect."
 echo " whmsonic ------------ Install WHMSonic Plugin"
@@ -38,30 +55,39 @@ echo " dnscheck ------------ Install Account DNS Check Plugin."
 echo " ruby ---------------- Install Ruby on Rails."
 echo " ffmpeg -------------- Install FFMPEG."
 echo " cpnginx ------------- Install cPnginx Admin Plugin."
-echo " allconfigserver ----- Install All Plugins from ConfigServer.com (without CSF)" 
+echo " allconfigserver ----- Install All Plugins from ConfigServer.com (without CSF)"
 echo " remcpnginx ---------- Remove cPnginx Admin Plugin."
 echo " ffmpegremove -------- Remove FFMPEG from your system."
 echo " compileon ----------- Disable Compilers."
 echo " compileoff ---------- Enable Compilers."
-echo " port ---------------- Change SSH port." 
-echo " selinux ------------- Disable SELinux permanently." 
+echo " port ---------------- Change SSH port."
+echo " selinux ------------- Disable SELinux permanently."
 echo " update -------------- Fully update your system."
 echo " securetmp ----------- Secure your /tmp partition."
 echo " securetmpv ---------- Secure your /tmp partition on Virtuozzo VPS."
 echo " fixsuphp ------------ Fix permission issue for suPHP (Advanced users only)."
 echo " sqladmin ------------ Optimize MySQL Servers."
 echo " ";
-echo " main ------------Return to Main Menu."
-echo " exit ---------- Leave" 
+echo -e "$OK3 main ------------Return to Main Menu. $ENDC "
+echo " exit ---------- Leave"
 echo " ";
 echo -n "Enter your desired function: "
 }
+
+# More showMenu stuff.
 
 while :
 do
 showMenu
 read yourch
 case $yourch in
+
+# This is where the real fun starts!
+
+main ) date
+./eidolos.sh
+sleep 1
+;;
 
 litespeedcp ) date
 cd /usr/src; wget http://www.litespeedtech.com/packages/cpanel/lsws_whm_plugin_install.sh; chmod 700 lsws_whm_plugin_install.sh; ./lsws_whm_plugin_install.sh; rm -f lsws_whm_plugin_install.sh
@@ -88,23 +114,17 @@ csf ) date
 wget http://www.configserver.com/free/csf.tgz
 tar -xzf csf.tgz
 cd csf
-if [ $OS == "centos" ]
-  then
-    sh install.sh
-else
-  apt-get install apt-show-versions libwww-perl libssleay; sh install.generic.sh
-  then
+sh install.sh
 cd ..
 rm -Rf csf.tgz
 echo "CSF successfully installed!"
+echo -e "$WARNING Edit your CSF configuration after installation! $ENDC"
 sleep 4
 showMenu
 ;;
 
 htopsetup ) date
-if [ $OS == "centos" ]
-  then
-    wget http://underhostbackup.com/update/htop-0.8.3.tar.gz
+wget http://underhostbackup.com/update/htop-0.8.3.tar.gz
 tar -xvf htop-0.8.3.tar.gz
 cd htop-0.8.3
 yum install gcc c++
@@ -112,11 +132,7 @@ yum install ncurses-devel
 ./configure
 make
 make install
-echo "htop successfully installed!"
-elif
-  apt-get install htop
-else echo -e $OK "htop successfully installed! Now you can use htop on your server!" $ENDC
-fi
+echo -e "htop successfully installed! Now you can use htop on your server!"
 sleep 4
 showMenu
 ;;
@@ -154,24 +170,6 @@ selinux ) sed -i 's/^SELINUX=/#SELINUX=/g' /etc/selinux/config
 echo 'SELINUX=disabled' >> /etc/selinux/config
 setenforce 0
 echo "SELinux successfully disabled!"
-sleep 4
-showMenu
-;;
-
-update ) MACHINE_TYPE=`uname -m`
-if [ ${MACHINE_TYPE} == 'x86_64' ]; then
-wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
-rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
-rpm -K rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
-rpm -i rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm
-else
-wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.i386.rpm
-rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
-rpm -K rpmforge-release-0.5.2-2.el5.rf.i386.rpm
-rpm -i rpmforge-release-0.5.2-2.el5.rf.i386.rpm
-fi
-yum -y update
-echo "System successfully updated!"
 sleep 4
 showMenu
 ;;
@@ -238,14 +236,6 @@ showMenu
 ;;
 
 securetmp ) date
-if [ $OS == "centos" ]
-  then
-    /scripts/securetmp
-	echo -e $OK "tmp partition has been mounted to a temporary file for extra security." $ENDC
-else
-  apt-get install apt-show-versions libwww-perl libssleay; sh install.generic.sh
-  then
-cd ..
 /scripts/securetmp
 echo "tmp partition has been mounted to a temporary file for extra security."
 sleep 4
@@ -253,8 +243,6 @@ showMenu
 ;;
 
 securetmpv ) date
-if [ $OS == "centos" ]
-  then
 none /tmp tmpfs nodev,nosuid,noexec 0 0
 echo "tmp partition has been mounted to a temporary file for extra security."
 sleep 4
@@ -395,8 +383,8 @@ showMenu
 fixsuphp ) echo -e "Please enter username you want to fix: "
 read user
 echo "Update are done on: $user"
-cd /home/$user/public_html
-chown -R $user:$user *
+cd /home/"$user"/public_html
+chown -R "$user:$user" ./*
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
 echo "Permission has been modified to 644 on files and 755 for folders!"
@@ -439,7 +427,7 @@ exit ) exit
 showMenu
 ;;
 
-*) echo "ERROR!";
+*) echo -e "$FAIL ERROR! $ENDC";
 echo "Press Enter to continue..." ; read ;;
 esac
 done
