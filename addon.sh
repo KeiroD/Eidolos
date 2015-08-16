@@ -35,7 +35,7 @@ echo " Welcome to EidolosScript Addons";
 echo " build 0.2 on April 17th 2015";
 echo " eidolonhost.com - systems@eidolonhost.com";
 echo -e "$WARNING GNU General Public License -- GPL v2 1991 — See included LICENSE. $ENDC"
-echo " `date`";
+echo "Current time: $(date)";
 echo -e "$OK2 Don't forget, you're on $(arch) $ENDC";
 echo -e "$OK3 Plugins - Addons and Secure: $ENDC ";
 echo " csf ------------ Install CSF Firewall for cPanel."
@@ -79,7 +79,7 @@ echo -n "Enter your desired function: "
 while :
 do
 showMenu
-read yourch
+read -r yourch
 case $yourch in
 
 # This is where the real fun starts!
@@ -156,7 +156,7 @@ showMenu
 ;;
 
 port ) echo -e "Please enter a new SSH port: "
-read sshport
+read -r sshport
 echo "You entered: $sshport"
 echo "Port $sshport" >>  /etc/ssh/sshd_config
 service sshd reload
@@ -381,14 +381,14 @@ showMenu
 ;;
 
 fixsuphp ) echo -e "Please enter username you want to fix: "
-read user
+read -r user
 echo "Update are done on: $user"
 cd /home/"$user"/public_html
 chown -R "$user:$user" ./*
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
 echo "Permission has been modified to 644 on files and 755 for folders!"
-echo "All files and folders have had their ownership changed to user: $cpusername!"
+echo "All files and folders have had their ownership changed to user: $user!"
 sleep 6
 showMenu
 ;;
@@ -428,6 +428,7 @@ showMenu
 ;;
 
 *) echo -e "$FAIL ERROR! $ENDC";
-echo "Press Enter to continue..." ; read ;;
+echo "Press Enter to continue..." ;
+read -r ;;
 esac
 done
