@@ -42,7 +42,7 @@ echo " Welcome to EidolosScript";
 echo " build 0.2 on April 17th 2015";
 echo " eidolonhost.com - systems@eidolonhost.com";
 echo -e "$WARNING GNU General Public License -- GPL v2 1991 — See included LICENSE. $ENDC"
-echo " `date`";
+echo "Current time: $(date)";
 echo -e "$OK2 You are running on: $(arch), on $OS $ENDC";
 echo " ";
 echo -e "$OK3 InterWorx Install: $ENDC ";
@@ -78,7 +78,7 @@ echo -n "Enter your desired function: "
 while :
 do
 showMenu
-read yourch
+read -r yourch
 case $yourch in
 
 # The rest of Eidolos Script!
@@ -138,7 +138,7 @@ showMenu
 ;;
 
 cloudlinux ) echo -e "Please enter your CloudLinux key: "
-read clkey
+read -r clkey
 echo "Key entered: $clkey"
 wget http://repo.cloudlinux.com/cloudlinux/sources/cln/cpanel2cl
 sh cpanel2cl -k "$clkey"
@@ -152,7 +152,7 @@ showMenu
 ;;
 
 regcloudlinux ) echo -e "Please enter your CloudLinux key: "
-read clkey
+read -r clkey
 echo "Key entered: $clkey"
 yum install rhn-setup
 rhnreg_ks --activationkey="$clkey" --force
@@ -166,7 +166,7 @@ showMenu
 ;;
 
 *) echo -e "$FAIL ERROR! $ENDC";
-echo "Press Enter to continue..." ; read ;;
+echo "Press Enter to continue..." ;
+read -r ;;
 esac
 done
-
