@@ -58,13 +58,13 @@ echo " cpnginx ------------- Install cPnginx Admin Plugin."
 echo " allconfigserver ----- Install All Plugins from ConfigServer.com (without CSF)"
 echo " remcpnginx ---------- Remove cPnginx Admin Plugin."
 echo " ffmpegremove -------- Remove FFMPEG from your system."
-echo " compileon ----------- Disable Compilers."
-echo " compileoff ---------- Enable Compilers."
+echo " compileon ----------- Disable Compilers. cPanel only."
+echo " compileoff ---------- Enable Compilers. cPanel only."
 echo " port ---------------- Change SSH port."
 echo " selinux ------------- Disable SELinux permanently."
 echo " update -------------- Fully update your system."
-echo " securetmp ----------- Secure your /tmp partition."
-echo " securetmpv ---------- Secure your /tmp partition on Virtuozzo VPS."
+echo " securetmp ----------- Secure your /tmp partition. cPanel only."
+echo " securetmpv ---------- Secure your /tmp partition on Virtuozzo VPS for cPanel."
 echo " fixsuphp ------------ Fix permission issue for suPHP (Advanced users only)."
 echo " ";
 echo -e "$OK3 main ------------Return to Main Menu. $ENDC "
@@ -89,7 +89,7 @@ sleep 1
 ;;
 
 litespeedcp ) date
-cd /usr/src; wget http://www.litespeedtech.com/packages/cpanel/lsws_whm_plugin_install.sh; chmod 700 lsws_whm_plugin_install.sh; ./lsws_whm_plugin_install.sh; rm -f lsws_whm_plugin_install.sh
+cd /usr/src || exit; wget http://www.litespeedtech.com/packages/cpanel/lsws_whm_plugin_install.sh; chmod 700 lsws_whm_plugin_install.sh; ./lsws_whm_plugin_install.sh; rm -f lsws_whm_plugin_install.sh
 echo "LiteSpeed successfully installed!"
 echo "Login to WHM and click the ‘LiteSpeed Web Server’ button."
 echo "Click ‘Install LiteSpeed’ and let it run through the installation procedure, this is completely automated."
@@ -102,7 +102,7 @@ wget http://www.logview.org/logview-install
 chmod +x logview-install
 ./logview-install
 rm -f logview-install
-cd ..
+cd .. || exit
 echo "logview plugin successfully installed!"
 echo "Logview is available in WHM under Plugins."
 sleep 4
@@ -112,9 +112,9 @@ showMenu
 csf ) date
 wget http://www.configserver.com/free/csf.tgz
 tar -xzf csf.tgz
-cd csf
+cd csf || exit
 sh install.sh
-cd ..
+cd .. || exit
 rm -Rf csf.tgz
 echo "CSF successfully installed!"
 echo -e "$WARNING Edit your CSF configuration after installation! $ENDC"
@@ -123,30 +123,24 @@ showMenu
 ;;
 
 htopsetup ) date
-wget http://underhostbackup.com/update/htop-0.8.3.tar.gz
-tar -xvf htop-0.8.3.tar.gz
-cd htop-0.8.3
-yum install gcc c++
-yum install ncurses-devel
-./configure
-make
-make install
+wget http://pkgs.repoforge.org/htop/htop-1.0.3-1.el7.rf.x86_64.rpm
+rpm -Uvh htop-1.*
 echo -e "htop successfully installed! Now you can use htop on your server!"
 sleep 4
 showMenu
 ;;
 
 bfdetect ) date
-cd /root/
+cd /root || exit
 wget http://www.rfxnetworks.com/downloads/bfd-current.tar.gz
 tar -xvzf bfd-current.tar.gz
-cd bfd-1.4
+cd bfd-* || exit
 ./install.sh
 echo -e "Please enter your email:"
-read email
+read -r email
 echo "You entered: $email"
-echo "ALERT_USR="1"" >>  /usr/local/bfd/conf.bfd
-echo "EMAIL_USR="$email"" >>  /usr/local/bfd/conf.bfd
+echo "ALERT_USR=\"1"\" >>  /usr/local/bfd/conf.bfd
+echo "EMAIL_USR=\"$email"\" >>  /usr/local/bfd/conf.bfd
 echo "Brute Force Detection has been installed!"
 echo "Email would be sent to $email"
 /usr/local/sbin/bfd -s
@@ -168,7 +162,7 @@ showMenu
 selinux ) sed -i 's/^SELINUX=/#SELINUX=/g' /etc/selinux/config
 echo 'SELINUX=disabled' >> /etc/selinux/config
 setenforce 0
-echo "SELinux successfully disabled!"
+echo "SELinux successfully disabled! But you really should learn how to configuer SELinux."
 sleep 4
 showMenu
 ;;
@@ -176,9 +170,9 @@ showMenu
 maldetect ) date
 wget http://www.rfxn.com/downloads/maldetect-current.tar.gz
 tar -xzvf maldetect-current.tar.gz
-cd maldetect-*
+cd maldetect-* || exit
 sh install.sh
-cd ..
+cd .. || exit
 rm -Rf maldetect-current.tar.gz
 echo "Linux Malware Detect has been installed!"
 sleep 4
@@ -186,10 +180,10 @@ showMenu
 ;;
 
 chkrootkit ) date
-cd /usr/src
-wget http://underhostbackup.com/update/chkrootkit.tar.gz
+cd /usr/src || exit
+wget ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit.tar.gz
 tar -xvzf chkrootkit.tar.gz
-cd chkrootkit-*/
+cd chkrootkit-*/ || exit
 make sense
 ./chkrootkit
 cd ..
@@ -250,30 +244,30 @@ showMenu
 
 allconfigserver ) date
 mkdir configserver
-cd configserver
+cd configserver || exit
 wget http://www.configserver.com/free/cmq.tgz
 tar -xzf cmq.tgz
-cd cmq/
+cd cmq/ || exit
 sh install.sh
-cd ..
+cd .. || exit
 rm -Rf cmq.tgz
 wget http://www.configserver.com/free/cmm.tgz
 tar -xzf cmm.tgz
-cd cmm/
+cd cmm/ || exit
 sh install.sh
-cd ..
+cd .. || exit
 rm -Rf cmm.tgz
 wget http://www.configserver.com/free/cse.tgz
 tar -xzf cse.tgz
-cd cse
+cd cse || exit
 sh install.sh
-cd ..
+cd .. || exit
 rm -Rf cse.tgz
 wget http://www.configserver.com/free/cmc.tgz
 tar -xzf cmc.tgz
-cd cmc/
+cd cmc/ || exit
 sh install.sh
-cd ..
+cd .. || exit
 rm -Rf cmc.tgz
 echo "All Plugins from ConfigServer.com without CSF has been successfully installed!"
 echo "Plugins available via WHM plugin tab"
@@ -282,14 +276,14 @@ showMenu
 ;;
 
 whmsonic ) date
-cd /root/; wget http://www.whmsonic.com/setupr/installr.sh; chmod +x installr.sh; ./installr.sh
+cd /root || exit; wget http://www.whmsonic.com/setupr/installr.sh; chmod +x installr.sh; ./installr.sh
 echo "WHMSonic successfully installed!"
 sleep 5
 showMenu
 ;;
 
 softaculous ) date
-cd /usr/local/cpanel/whostmgr/docroot/cgi 
+cd /usr/local/cpanel/whostmgr/docroot/cgi || exit
 wget -N http://www.softaculous.com/ins/addon_softaculous.php
 chmod 755 addon_softaculous.php
 echo "Go to WHM, login as root and click on Tweak Settings, then you should ensure that both the Ioncube loader is selected for the backend copy of PHP. Save changes."
@@ -299,7 +293,7 @@ showMenu
 ;;
 
 fantastico ) date
-cd /usr/local/cpanel/whostmgr/docroot/cgi 
+cd /usr/local/cpanel/whostmgr/docroot/cgi || exit
 wget -N http://files.betaservant.com/files/free/fantastico_whm_admin.tgz
 tar -xzpf fantastico_whm_admin.tgz 
 rm -rf fantastico_whm_admin.tgz
@@ -310,7 +304,7 @@ showMenu
 ;;
 
 cleanbackup ) date
-cd /home
+cd /home || exit
 rm -f latest-cleanbackups
 wget http://www.ndchost.com/cpanel-whm/plugins/cleanbackups/download.php
 sh latest-cleanbackups
@@ -320,7 +314,7 @@ showMenu
 ;;
 
 dnscheck ) date
-cd /home
+cd /home || exit
 rm -f latest-accountdnscheck
 wget http://www.ndchost.com/cpanel-whm/plugins/accountdnscheck/download.php
 sh latest-accountdnscheck
@@ -332,7 +326,7 @@ showMenu
 ffmpeg ) date
 wget http://mirror.ffmpeginstaller.com/old/scripts/ffmpeg7/ffmpeginstaller.7.1.tar.gz
 tar xf ffmpeginstaller.7.1.tar.gz
-cd ffmpeginstaller.7.1
+cd ffmpeginstaller.7.1 || exit
 ./install
 echo "FFMPEG successfully installed!"
 sleep 4
@@ -347,10 +341,10 @@ showMenu
 ;;
 
 cpnginx ) date
-cd /usr/local/src
-wget http://nginxcp.com/nginxadmin2.7-stable.tar
-tar xf nginxadmin2.7-stable.tar
-cd publicnginx
+cd /usr/local/src || exit
+wget http://nginxcp.com/latest/nginxadmin.tar
+tar xf nginxadmin.tar
+cd publicnginx || exit
 ./nginxinstaller install
 echo "cPnginx Admin Plugin successfully installed!"
 sleep 4
@@ -358,11 +352,10 @@ showMenu
 ;;
 
 remcpnginx ) date
-cd /usr/local/src
-wget http://nginxcp.com/nginxadmin2.7-stable.tar
-tar xf nginxadmin2.7-stable.tar
-cd publicnginx
-./nginxinstaller uninstall
+cd /usr/local/src || exit
+wget http://nginxcp.com/latest/nginxadmin.tar 
+tar xf nginxadmin.tar 
+cd publicnginx || exit
 echo "cPnginx Admin Plugin successfully removed from your system!"
 sleep 4
 showMenu
@@ -382,7 +375,7 @@ showMenu
 fixsuphp ) echo -e "Please enter username you want to fix: "
 read -r user
 echo "Update are done on: $user"
-cd /home/"$user"/public_html
+cd /home/"$user"/public_html || exit
 chown -R "$user:$user" ./*
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
@@ -395,7 +388,7 @@ showMenu
 prminstall ) date
 wget http://www.rfxnetworks.com/downloads/prm-current.tar.gz
 tar xvfz prm-current.tar.gz
-cd prm-*/
+cd prm-*/ || exit
 ./install.sh
 echo "Process Resource Monitor successfully installed!"
 sleep 4
@@ -405,7 +398,7 @@ showMenu
 siminstall ) date
 wget http://www.rfxn.com/downloads/sim-current.tar.gz
 tar xvfz sim-current.tar.gz
-cd sim-*/
+cd sim-*/ || exit
 ./install.sh
 echo "System Integrity Monitor successfully installed!"
 sleep 4
