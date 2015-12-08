@@ -66,7 +66,6 @@ echo " update -------------- Fully update your system."
 echo " securetmp ----------- Secure your /tmp partition."
 echo " securetmpv ---------- Secure your /tmp partition on Virtuozzo VPS."
 echo " fixsuphp ------------ Fix permission issue for suPHP (Advanced users only)."
-echo " sqladmin ------------ Optimize MySQL Servers."
 echo " ";
 echo -e "$OK3 main ------------Return to Main Menu. $ENDC "
 echo " exit ---------- Leave"
@@ -410,16 +409,6 @@ cd sim-*/
 ./install.sh
 echo "System Integrity Monitor successfully installed!"
 sleep 4
-showMenu
-;;
-
-sqladmin ) date
-cd /etc
-rm -Rf my.cnf
-wget http://underhostbackup.com/update/my.cnf
-chmod 644 my.cnf
-echo "Automated SQL Optimization Completed!"
-sleep 6
 showMenu
 ;;
 
