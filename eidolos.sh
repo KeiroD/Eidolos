@@ -83,7 +83,7 @@ case $yourch in
 # The rest of Eidolos Script!
 
 interworx ) date
-cd /home
+cd /home || exit
 yum -y install wget perl curl
 sh <((curl -sL interworx.com/inst.sh))
 showMenu
@@ -99,7 +99,7 @@ showMenu
 ehcp ) date
 wget -O ehcp.tgz www.ehcp.net/ehcp_latest.tgz
 tar -zxvf ehcp.tgz
-cd ehcp
+cd ehcp || exit
 ./install.sh
 showMenu
 ;;
@@ -123,14 +123,14 @@ showMenu
 ;;
 
 cpanel ) date
-cd /home
+cd /home || exit
 yum -y install wget perl curl
 sh <((curl -sL httpupdate.cpanel.net/latest))
 showMenu
 ;;
 
 cpdnsonly ) date
-cd /home
+cd /home || exit
 yum -y install wget perl curl
 sh <((curl -sL httpupdate.cpanel.net/latest-dnsonly))
 showMenu
