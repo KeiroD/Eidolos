@@ -28,7 +28,7 @@ InterWorx Install:
  exit ---------- Leave
 ```
 
-### Usage for addons.sh
+### Usage for addon.sh
 
 ```
 Plugins - Addons and Secure:
