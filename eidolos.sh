@@ -56,8 +56,7 @@ echo -e "$OK3 Alternative Control Panels: $ENDC ";
 echo " webmin -------------- Install latest Webmin"
 echo " vestacp -------------- Install latest VestaCP for Linux."
 echo " ehcp -------------- Install latest EHCP for Linux."
-echo " ipanel -------------- Install latest iPanel."
-echo " ezeelogin -------------- Install latest Ezeelogin."
+echo " ezee -------------- Install latest Ezeelogin."
 echo " ";
 echo -e "$OK3 SSL Tools: $ENDC ";
 echo " sslcheck -------------- Checks SSL certificates installed and helps resolve SSL installs."
@@ -102,6 +101,19 @@ wget -O ehcp.tgz www.ehcp.net/ehcp_latest.tgz
 tar -zxvf ehcp.tgz
 cd ehcp
 ./install.sh
+showMenu
+;;
+
+ezee ) date
+wget http://downloads.ezeelogin.com/ezlogin_6.6.0.bin
+sh ezlogin_*.bin
+showMenu
+;;
+
+sslcheck ) date
+wget https://github.com/zakjan/cert-chain-resolver/blob/master/src/cert-chain-resolver.sh
+chmod +x cert-chain-resolver.sh
+./cert-chain-resolver.sh
 showMenu
 ;;
 
