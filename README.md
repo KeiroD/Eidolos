@@ -1,6 +1,18 @@
 # Eidolos
 Eidodlos Script is a shell script that helps us install various services on a given server.
 
+# How to Download?
+
+Well, you have two options. Either download the entire thing as a [zip](https://github.com/EidolonHost/Eidolos/archive/master.zip)... or `wget https://raw.githubusercontent.com/EidolonHost/Eidolos/master/eidolos.sh` and `wget https://raw.githubusercontent.com/EidolonHost/Eidolos/master/addon.sh`
+
+Then from your `terminal`,
+
+`chmod +x eidolos.sh; chmod +x addon.sh`
+
+Finally,
+
+`./eidolos.sh` or `./addon.sh` as needed. Type in the function you want to run exactly as described in the usage description below. e.g., if you want to install cPanel, simply type `cpanel` whilst at the `Enter your desired function:` prompt.
+
 ## Usage for Eidolos.sh
 ```
 InterWorx Install:
