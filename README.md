@@ -65,3 +65,7 @@ Plugins - Addons and Secure Server:
  main ------------Return to Main Menu.
  exit ---------- Leave
 ```
+
+### LICENSE
+
+See [LICENSE](https://github.com/EidolonHost/Eidolos/blob/master/LICENSE) for specifics. We're `GPLv2`, if you're wondering.
