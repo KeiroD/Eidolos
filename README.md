@@ -60,7 +60,6 @@ Plugins - Addons and Secure Server:
  securetmp ----------- Secure your /tmp partition.
  securetmpv ---------- Secure your /tmp partition on Virtuozzo VPS.
  fixsuphp ------------ Fix permission issue for suPHP (Advanced users only).
- sqladmin ------------ Optimize MySQL Servers.
 
  main ------------Return to Main Menu.
  exit ---------- Leave
