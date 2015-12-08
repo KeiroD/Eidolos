@@ -31,7 +31,7 @@ InterWorx Install:
 ### Usage for addons.sh
 
 ```
-Plugins - Addons and Secure Server:
+Plugins - Addons and Secure:
  csf ------------ Install CSF Firewall for cPanel.
  htopsetup ----------- Install htop Process Viewer.
  logview ------------- Install logview plugin.
@@ -52,13 +52,13 @@ Plugins - Addons and Secure Server:
  allconfigserver ----- Install All Plugins from ConfigServer.com (without CSF)
  remcpnginx ---------- Remove cPnginx Admin Plugin.
  ffmpegremove -------- Remove FFMPEG from your system.
- compileon ----------- Disable Compilers.
- compileoff ---------- Enable Compilers.
+ compileon ----------- Disable Compilers. cPanel only.
+ compileoff ---------- Enable Compilers. cPanel only.
  port ---------------- Change SSH port.
  selinux ------------- Disable SELinux permanently.
  update -------------- Fully update your system.
- securetmp ----------- Secure your /tmp partition.
- securetmpv ---------- Secure your /tmp partition on Virtuozzo VPS.
+ securetmp ----------- Secure your /tmp partition. cPanel only.
+ securetmpv ---------- Secure your /tmp partition on Virtuozzo VPS for cPanel.
  fixsuphp ------------ Fix permission issue for suPHP (Advanced users only).
 
  main ------------Return to Main Menu.
