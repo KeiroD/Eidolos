@@ -1,8 +1,7 @@
 # Eidolos
 Eidodlos Script is a shell script that helps us install various services on a given server.
 
-# How to Download?
-
+### Installation
 Well, you have two options. Either download the entire thing as a [zip](https://github.com/EidolonHost/Eidolos/archive/master.zip)... or from the `terminal`, use the following commands:
 
 
@@ -17,6 +16,7 @@ Then from your `terminal`,
 Finally,
 
 `./eidolos.sh` or `./addon.sh` as needed. Type in the function you want to run exactly as described in the usage description below. e.g., if you want to install cPanel, simply type `cpanel` whilst at the `Enter your desired function:` prompt.
+
 
 ## Usage for Eidolos.sh
 ```
@@ -82,29 +82,28 @@ Plugins - Addons and Secure:
  exit ---------- Leave
 ```
 
-Reporting Issues
-----------------
+### Latest News
+The current version of Eidolos is our first stable open-source release.
+For a [list of known issues see GitHub](https://github.com/EidolonHost/Eidolos/issues) or take a look at the [roadmap](roadmap.md) to see what the current plans are.
 
-When reporting issues, please try to be as descriptive as possible, and include
-as much relevant information as you can. A step by step guide on how to
-reproduce the issue will greatly increase the chances of your issue being
-resolved in a timely manner.
+### Contributing
+Eidolos is an open source project and wouldn't exist without the passionate community of volunteer [contributors](https://github.com/EidolonHost/Eidolos/graphs/contributors).
+If you would like to help out then you can find more information below:
 
-For example, if you are experiencing a problem while running one of the
-commands, please provide full output of said command.
+* [Building, testing and debugging the sources](https://github.com/EidolonHost/Eidolos/wiki/Building,-Testing,-and-Debugging)
 
-If your issue involves installing, updating or resolving dependencies, the
-chance of us being able to reproduce your issue will be much higher if you
-share your environment with us.
+To contribute code to the project simply:
+  1. Fork the repo and clone locally
+  2. Create a specific topic branch, add a nice feature or fix your bug
+  3. Send a Pull Request to spread the fun!
 
-Contributing policy
--------------------
+If you haven't already, please sign the [.NET Foundation CLA](http://cla2.dotnetfoundation.org) to give us permission to include your code in the next release of Eidolos.
 
-Fork the project, create a feature branch, and send us a pull request. We'll
-review the PR and discuss with you the changes that you'd like merged into master.
+This project has adopted the code of conduct defined by the [Contributor Covenant](http://contributor-covenant.org/) to clarify expected behavior in our community. This code of conduct has been [adopted by many other projects](http://contributor-covenant.org/adopters/). For more information see the [.NET Foundation Code of Conduct](http://www.dotnetfoundation.org/code-of-conduct).
 
-If you would like to help, take a look at the [list of open issues](https://github.com/EidolonHost/Eidolos/issues).
+### License
+Eidolos proudly uses the [GPLv2 License](LICENSE).
 
-### LICENSE
+### EidolonHost
 
-See [LICENSE](https://github.com/EidolonHost/Eidolos/blob/master/LICENSE) for specifics. We're `GPLv2`, if you're wondering.
+The Eidolos project is supported by [EidolonHost](https://eidolonhost.com).
