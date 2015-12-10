@@ -1,5 +1,5 @@
 # Eidolos
-Eidodlos Script is a shell script that helps us install various services on a given server.
+Eidolos Script is a shell script that helps us install various services on a given server.
 
 ### Installation
 Well, you have two options. Either download the entire thing as a [zip](https://github.com/EidolonHost/Eidolos/archive/master.zip)... or from the `terminal`, use the following commands:
