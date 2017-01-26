@@ -5,9 +5,9 @@ Eidolos Script is a shell script that helps us install various services on a giv
 Well, you have two options. Either download the entire thing as a [zip](https://github.com/EidolonHost/Eidolos/archive/master.zip)... or from the `terminal`, use the following commands:
 
 
-`wget https://raw.githubusercontent.com/EidolonHost/Eidolos/master/eidolos.sh`
+`wget https://raw.githubusercontent.com/KeiroD/Eidolos/master/eidolos.sh`
 
-`wget https://raw.githubusercontent.com/EidolonHost/Eidolos/master/addon.sh`
+`wget https://raw.githubusercontent.com/KeiroD/Eidolos/master/addon.sh`
 
 Then from your `terminal`,
 
