@@ -123,8 +123,9 @@ showMenu
 ;;
 
 htopsetup ) date
-wget http://pkgs.repoforge.org/htop/htop-1.0.3-1.el7.rf.x86_64.rpm
-rpm -Uvh htop-1.*
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+rpm -Uvh epel-release*.rpm
+yum install htop -y
 echo -e "htop successfully installed! Now you can use htop on your server!"
 sleep 4
 showMenu
