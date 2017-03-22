@@ -315,9 +315,8 @@ showMenu
 ;;
 
 dnscheck ) date
-cd /home || exit
-rm -f latest-accountdnscheck
-wget http://www.ndchost.com/cpanel-whm/plugins/accountdnscheck/download.php
+cd /usr/src || exit
+wget http://download.ndchost.com/accountdnscheck/latest-accountdnscheck
 sh latest-accountdnscheck
 echo "Account DNS Check plugin successfully installed!"
 sleep 4
