@@ -110,7 +110,7 @@ showMenu
 ;;
 
 csf ) date
-wget http://www.configserver.com/free/csf.tgz
+wget https://download.configserver.com/csf.tgz
 tar -xzf csf.tgz
 cd csf || exit
 sh install.sh
@@ -246,25 +246,25 @@ showMenu
 allconfigserver ) date
 mkdir configserver
 cd configserver || exit
-wget http://www.configserver.com/free/cmq.tgz
+wget https://download.configserver.com/cmq.tgz
 tar -xzf cmq.tgz
 cd cmq/ || exit
 sh install.sh
 cd .. || exit
 rm -Rf cmq.tgz
-wget http://www.configserver.com/free/cmm.tgz
+wget https://download.configserver.com/cmm.tgz
 tar -xzf cmm.tgz
 cd cmm/ || exit
 sh install.sh
 cd .. || exit
 rm -Rf cmm.tgz
-wget http://www.configserver.com/free/cse.tgz
+wget https://download.configserver.com/cse.tgz
 tar -xzf cse.tgz
 cd cse || exit
 sh install.sh
 cd .. || exit
 rm -Rf cse.tgz
-wget http://www.configserver.com/free/cmc.tgz
+wget https://download.configserver.com/cmc.tgz
 tar -xzf cmc.tgz
 cd cmc/ || exit
 sh install.sh
