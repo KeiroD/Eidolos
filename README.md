@@ -65,9 +65,7 @@ Plugins - Addons and Secure:
  dnscheck ------------ Install Account DNS Check Plugin.
  ruby ---------------- Install Ruby on Rails.
  ffmpeg -------------- Install FFMPEG.
- cpnginx ------------- Install cPnginx Admin Plugin.
  allconfigserver ----- Install All Plugins from ConfigServer.com (without CSF)
- remcpnginx ---------- Remove cPnginx Admin Plugin.
  ffmpegremove -------- Remove FFMPEG from your system.
  compileon ----------- Enable Compilers. cPanel only.
  compileoff ---------- Disable Compilers. cPanel only.
