@@ -69,8 +69,8 @@ Plugins - Addons and Secure:
  allconfigserver ----- Install All Plugins from ConfigServer.com (without CSF)
  remcpnginx ---------- Remove cPnginx Admin Plugin.
  ffmpegremove -------- Remove FFMPEG from your system.
- compileon ----------- Disable Compilers. cPanel only.
- compileoff ---------- Enable Compilers. cPanel only.
+ compileon ----------- Enable Compilers. cPanel only.
+ compileoff ---------- Disable Compilers. cPanel only.
  port ---------------- Change SSH port.
  selinux ------------- Disable SELinux permanently.
  update -------------- Fully update your system.
