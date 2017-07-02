@@ -54,9 +54,7 @@ echo " bfdetect ------------ Install Brute Force Detection."
 echo " dnscheck ------------ Install Account DNS Check Plugin."
 echo " ruby ---------------- Install Ruby on Rails."
 echo " ffmpeg -------------- Install FFMPEG."
-echo " cpnginx ------------- Install cPnginx Admin Plugin."
 echo " allconfigserver ----- Install All Plugins from ConfigServer.com (without CSF)"
-echo " remcpnginx ---------- Remove cPnginx Admin Plugin."
 echo " ffmpegremove -------- Remove FFMPEG from your system."
 echo " compileon ----------- Disable Compilers. cPanel only."
 echo " compileoff ---------- Enable Compilers. cPanel only."
@@ -336,27 +334,6 @@ showMenu
 ffmpegremove ) date
 rm -Rf /usr/local/cpffmpeg
 echo "FFMPEG successfully removed!"
-sleep 4
-showMenu
-;;
-
-cpnginx ) date
-cd /usr/local/src || exit
-wget http://nginxcp.com/latest/nginxadmin.tar
-tar xf nginxadmin.tar
-cd publicnginx || exit
-./nginxinstaller install
-echo "cPnginx Admin Plugin successfully installed!"
-sleep 4
-showMenu
-;;
-
-remcpnginx ) date
-cd /usr/local/src || exit
-wget http://nginxcp.com/latest/nginxadmin.tar 
-tar xf nginxadmin.tar 
-cd publicnginx || exit
-echo "cPnginx Admin Plugin successfully removed from your system!"
 sleep 4
 showMenu
 ;;
