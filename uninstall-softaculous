@@ -58,6 +58,9 @@ echo "Plesk detected! Uninstalling..."
 # Do the thang.
 rm -rf /etc/cron.d/softaculous; rm -rf /etc/cron.d/softaculous2; rm -rf /var/softaculous; rm -rf /usr/local/psa/admin/htdocs/modules/softaculous; rm -rf /usr/local/softaculous;
 fi
+if [[ $panel == "IW" ]];then
+echo "InterWorx detected! Uninstalling..."
+fi
 if [[ $panel == "none" ]];then
 echo "Dude, this server has no control panel. Aborting!" || exit 1;
 fi
