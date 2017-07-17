@@ -1,0 +1,63 @@
+#!/bin/bash
+# This uninstalls Softaculous for you in cPanel, Plesk and DirectAdmin servers.
+printf "Softaculous Uninstaller by Keiro v0.2. WTFPL - http://www.wtfpl.net \\n"
+printf "Improvements and suggestions, e-mail rreyes@knownhost.com \\n"
+#
+#        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+#                    Version 2, December 2004 
+#
+# Copyright (C) 2004 Sam Hocevar <sam@hocevar.net> 
+#
+# Everyone is permitted to copy and distribute verbatim or modified 
+# copies of this license document, and changing it is allowed as long 
+# as the name is changed. 
+#
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+#   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+#
+# 0. You just DO WHAT THE FUCK YOU WANT TO.
+# Check for root.
+# Am I root?
+if [ "x$(id -u)" != 'x0' ]; then
+    echo -e "Error: this script can only be executed by root!"
+    exit 1
+fi
+# Detect what we're on and display to user.
+echo "Detecting control panels..."
+# Let's check and make sure we're on cPanel, DA or Plesk first...
+if [[ -d /usr/local/psa ]];then
+        panel="Plesk"
+elif [[ -d /usr/local/cpanel ]];then
+        panel="cP"
+elif [[ -d /usr/local/directadmin ]];then
+        panel="DA"
+else
+        panel="none"
+fi
+#echo "The uninstaller's not quite automatic yet but will be in a future iteration."
+#echo "For now, please select the uninstaller for the control panel you're on."
+# Whoo. No need for asking us to select control panels. It'll auto-detect!
+# Execute uninstallers.
+if [[ $panel == "cP" ]];then
+echo "cPanel detected! Uninstalling..."
+# Unregister the cPanel plugin...
+/usr/local/cpanel/bin/unregister_cpanelplugin /usr/local/cpanel/whostmgr/docroot/cgi/softaculous/softaculous.cpanelplugin;
+# Do the thang.
+rm -rf /etc/cron.d/softaculous*; rm -rf /var/softaculous; rm -rf /usr/local/cpanel/whostmgr/cgi/softaculous; rm -rf /usr/local/cpanel/cgi/addon_softaculous.*; rm -rf /usr/local/cpanel/base/frontend/x3/dynamicui/dynamicui_softicons.conf; rm -rf /usr/local/cpanel/base/frontend/x3/dynamicui/dynamicui_softaculous.conf; rm -rf /usr/local/cpanel/base/frontend/x3/dynamicui/dynamicui_soft_div_icons.conf; rm -rf /usr/local/cpanel/base/frontend/x3/dynamicui/dynamicui_soft_div.conf; rm -rf /usr/local/cpanel/base/frontend/paper_lantern/dynamicui/dynamicui_softicons.conf; rm -rf /usr/local/cpanel/base/frontend/paper_lantern/dynamicui/dynamicui_softaculous.conf; rm -rf /usr/local/cpanel/base/frontend/paper_lantern/dynamicui/dynamicui_soft_div_icons.conf; rm -rf /usr/local/cpanel/base/frontend/paper_lantern/dynamicui/dynamicui_soft_div.conf;
+fi
+# Actually remove Softaculous from DA.
+if [[ $panel == "DA" ]];then
+echo "DirectAdmin detected! Uninstalling..."
+# Do the thang.
+rm -rf /etc/cron.d/softaculous; rm -rf /etc/cron.d/softaculous2; rm -rf /var/softaculous; rm -rf /usr/local/directadmin/plugins/softaculous;
+fi
+if [[ $panel == "Plesk" ]];then
+echo "Plesk detected! Uninstalling..."
+# Do the thang.
+rm -rf /etc/cron.d/softaculous; rm -rf /etc/cron.d/softaculous2; rm -rf /var/softaculous; rm -rf /usr/local/psa/admin/htdocs/modules/softaculous; rm -rf /usr/local/softaculous;
+fi
+if [[ $panel == "none" ]];then
+echo "Dude, this server has no control panel. Aborting!" || exit 1;
+fi
+# Finish up.
+echo "Removal of Softaculous is complete!"
