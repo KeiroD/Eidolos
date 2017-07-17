@@ -31,6 +31,8 @@ elif [[ -d /usr/local/cpanel ]];then
         panel="cP"
 elif [[ -d /usr/local/directadmin ]];then
         panel="DA"
+elif [[ -d /usr/local/interworx ]];then
+        panel="IW"
 else
         panel="none"
 fi
