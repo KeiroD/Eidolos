@@ -322,14 +322,26 @@ showMenu
 ;;
 
 ffmpeg ) date
-wget http://mirror.ffmpeginstaller.com/old/scripts/ffmpeg7/ffmpeginstaller.7.1.tar.gz
-tar xf ffmpeginstaller.7.1.tar.gz
-cd ffmpeginstaller.7.1 || exit
-./install
-echo "FFMPEG successfully installed!"
-sleep 4
-showMenu
-;;
+                which ffmpeg 2>&1 >/dev/null
+                if [[ $? -eq 0 ]];then
+                        echo Already installed. Please move on.
+                else
+                        if [ `uname -m` == "x86_64" ];then
+                                rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+                                rpm -Uvh http://download1.rpmfusion.org/free/el/updates/6/x68_64/rpmfusion-free-release-6-1.noarch.rpm
+                        elif [ `uname -m` == "i386" ];then
+                                rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+                                rpm -Uvh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
+                        elif [ `uname -m` == "i686" ];then
+                                rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+                                rpm -Uvh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
+                        fi
+                        yum -y upgrade
+                        yum -y install ffmpeg
+                        echo "FFMPEG successfully installed!"
+                        sleep 4
+                        show Menu
+                        ;;
 
 ffmpegremove ) date
 rm -Rf /usr/local/cpffmpeg
