@@ -1,6 +1,10 @@
 # Eidolos
 Eidolos Script is a shell script that helps us install various services on a given server.
 
+**THIS SCRIPT IS NOW DEPRECATED. AS PER THE GPL, THIS IS THE FINAL UNSTABLE RELEASE OF EIDOLOS.**
+
+Eidolos is now being rewritten from scratch in a new repository separate from this repository. We will add a link to the new repository when it is ready for public release.
+
 ### Installation
 Well, you have two options. Either download the entire thing as a [zip](https://github.com/KeiroD/Eidolos/archive/master.zip)... or from the `terminal`, use the following commands:
 
