@@ -97,16 +97,10 @@ showMenu
 ;;
 
 ehcp ) date
-wget -O ehcp.tgz www.ehcp.net/ehcp_latest.tgz
+wget -O ehcp.tgz www.ehcp.net/ehcp_2004.tgz
 tar -zxvf ehcp.tgz
 cd ehcp || exit
 ./install.sh
-showMenu
-;;
-
-ezee ) date
-wget http://downloads.ezeelogin.com/ezlogin_6.6.0.bin
-sh ezlogin_*.bin
 showMenu
 ;;
 
