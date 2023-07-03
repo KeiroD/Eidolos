@@ -143,15 +143,11 @@ fi
 showMenu
 ;;
 
-cloudlinux ) echo -e "Please enter your CloudLinux key: "
-read -r clkey
-echo "Key entered: $clkey"
-wget http://repo.cloudlinux.com/cloudlinux/sources/cln/cpanel2cl
-sh cpanel2cl -k "$clkey"
-echo "Successfully Installed Cloudlinux, now your system is about to reboot. Rebooting in 12 seconds!"
-echo "Once you have rebooted, run: /scripts/easyapache --build "
-sleep 8
-echo "Once done, you are running CloudLinux kernel with LVE enabled!"
+cloudlinux ) echo -e "Installing CloudLinux. License will be activated automatically. Stand by..."
+wget https://repo.cloudlinux.com/cloudlinux/sources/cln/cldeploy
+sh cldeploy -i
+uname -r; cat /etc/os-release
+echo "Initiating reboot."
 sleep 4
 reboot
 showMenu
